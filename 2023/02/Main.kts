@@ -32,15 +32,15 @@ val partOne = games
     .sumOf { it.id }
 val partTwo = games
     .sumOf {
-        var minRed: Int = 1
-        var minGreen: Int = 1
-        var minBlue: Int = 1
+        var maxRed = 1
+        var maxGreen = 1
+        var maxBlue = 1
         it.rounds.map { round ->
-            minRed = max(minRed, round.red)
-            minGreen = max(minGreen, round.green)
-            minBlue = max(minBlue, round.blue)
+            maxRed = max(maxRed, round.red)
+            maxGreen = max(maxGreen, round.green)
+            maxBlue = max(maxBlue, round.blue)
         }
-        minRed * minGreen * minBlue
+        maxRed * maxGreen * maxBlue
     }
 println("Part one: $partOne")
 println("Part two: $partTwo")
