@@ -26,5 +26,21 @@ val points = cards
         }
     }
 
-
 println(points)
+
+val copies = mutableListOf<Card>()
+fun addWinners(card: Card) {
+    val wins = card.winners.intersect(card.numbers)
+    if (wins.isEmpty()) {
+        return
+    }
+    for (i in 1..wins.size) {
+        val cardToAdd = cards[card.id + i - 1]
+        copies.add(cardToAdd)
+        addWinners(cardToAdd)
+    }
+}
+cards.forEach{ card ->
+    addWinners(card)
+}
+println((copies + cards).size)
